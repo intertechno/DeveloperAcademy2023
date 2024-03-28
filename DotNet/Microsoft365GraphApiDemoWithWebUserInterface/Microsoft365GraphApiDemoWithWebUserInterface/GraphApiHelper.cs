@@ -53,7 +53,7 @@ namespace Microsoft365GraphApiDemoWithWebUserInterface
             {
                 foreach(Event calendarEvent in response.Value)
                 {
-                    eventsDictionary.Add(calendarEvent.Subject, calendarEvent.Start.ToString());
+                    eventsDictionary.Add(calendarEvent.Subject, calendarEvent.Start.DateTime.ToString());
                 }
             }
 
