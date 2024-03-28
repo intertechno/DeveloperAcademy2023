@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Customers by Country</title>
+    <!-- Add styling if needed -->
+</head>
+<body>
+    <input type="text" id="countryInput" placeholder="Enter Country">
+    <button onclick="getCustomers()">Search</button>
+    <div id="results"></div>
+
+    <script>
+        function getCustomers() {
+            var country = document.getElementById('countryInput').value;
+            fetch(`http://localhost:3000/customers/${country}`)
+                .then(response => response.json())
+                .then(data => {
+                    var resultsDiv = document.getElementById('results');
+                    resultsDiv.innerHTML = ''; // Clear previous results
+                    data.forEach(customer => {
+                        resultsDiv.innerHTML += `<p>${customer.CompanyName}</p>`;
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

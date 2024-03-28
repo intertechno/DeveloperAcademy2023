@@ -1,0 +1,25 @@
+﻿@model Dictionary<string, string>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Microsoft 365 Graph API Demo with Web User Interface</h1>
+
+<h2>User listing</h2>
+<table class="table w-50">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Display Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Key</td>
+                <td>@user.Value</td>
+            </tr>
+        }
+    </tbody>
+</table>
