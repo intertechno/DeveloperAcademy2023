@@ -22,6 +22,17 @@ namespace Microsoft365GraphApiDemoWithWebUserInterface.Controllers
             return View(users);
         }
 
+        [HttpGet]
+        [Route("CalendarEvents/{userId}")]
+        public async Task<IActionResult> CalendarEvents(string userId)
+        {
+            GraphApiHelper graphApiHelper = new();
+            await graphApiHelper.AuthenticateAsync();
+            Dictionary<string, string> events = await graphApiHelper.GetCalendarEventsForUserAsync(userId);
+
+            return View(events);
+        }
+
         public IActionResult Privacy()
         {
             return View();

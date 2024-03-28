@@ -43,5 +43,21 @@ namespace Microsoft365GraphApiDemoWithWebUserInterface
 
             return usersDictionary;
         }
+
+        public async Task<Dictionary<string, string>> GetCalendarEventsForUserAsync(string userId)
+        {
+            EventCollectionResponse? response = await GraphClient.Users[userId].Calendar.Events.GetAsync();
+            Dictionary<string, string> eventsDictionary = [];
+
+            if (response != null)
+            {
+                foreach(Event calendarEvent in response.Value)
+                {
+                    eventsDictionary.Add(calendarEvent.Subject, calendarEvent.Start.ToString());
+                }
+            }
+
+            return eventsDictionary;
+        }
     }
 }
